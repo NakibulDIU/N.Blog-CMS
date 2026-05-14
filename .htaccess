@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# 1. Handle the Profile slug
+# Redirects /CMS/profile/ali01  ->  /CMS/Profile.php?username=ali01
+RewriteRule ^profile/([^/]+)/?$ Profile.php?username=$1 [L,QSA,NC]
+
+# 2. Optional: Remove .php extensions globally
+# Redirects /CMS/Dashboard  ->  /CMS/Dashboard.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
